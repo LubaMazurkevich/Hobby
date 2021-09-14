@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" href="#" style="color:#ffffff">Главная</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     <li class="nav-item">
+          {% if user.is_authenticated %}
+              <li style="color:#ffffff">User:{{ user.get_username }}</li>
+              <a class="nav-link active" aria-current="page" href="{% url 'logout'%}?next={{request.path}}" style="color:#ffffff">Выйти</a>
+                {% else %}
+               <a class="nav-link active" aria-current="page" href="{% url 'login'%}?next={{request.path}}" style="color:#ffffff">Войти</a>
+                 {% endif %}
+           </li>
+        <li class="nav-item" >
+          <a class="nav-link" href="{% url 'books_new' %}" style="color:#ffffff">Добавить книгу</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#" style="color:#ffffff">Мои фильмы</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="color:#ffffff">
+        <button class="btn btn-outline-success" type="submit" style="color:#ffffff">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<body>
+{% block page_content %}
+{% endblock %}
+</body>
+</html>
