@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-<h1> {{ book.title }}</h1>  <!--почему тут пишется book?-->
+<h1> {{ book.title }}</h1>
 <div class="row">
     <div class="col-md-8">
-        <img src="{% static book.image %}" alt="" width="100%"> <!--почему тут пишется book?-->
+<!--        <img src="{% static book.image %}" alt="" width="100%">--> <!--статики-->
+        <img src="{{book.image.url}}" alt="" width="100%">
     </div>
     <div class="col-md-4">
         <h5>О книге: </h5>
-        <p>{{ book.description }}</p>  <!--почему тут пишется book тоже?-->
+        <p>{{ book.description }}</p>
         <br>
         <h5>Жанр:</h5>
-        <p>{{ book.genre }}</p> <!--почему тут пишется book тоже?-->
+        <p>{{ book.genre }}</p>
     </div>
 </div>
 {% endblock %}

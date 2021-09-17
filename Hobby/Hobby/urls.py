@@ -23,7 +23,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('library.urls')), #страница называлась books
-    path('accounts/', include('django.contrib.auth.urls'), name='accounts'),#Add Django site authentication urls (for login, logout, password management)
+    path('accounts/', include('django.contrib.auth.urls'), name='accounts'),
+    #Add Django site authentication urls (for login, logout, password management)
+    path('accounts/', include('accounts.urls')),
 ]
 
 

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block page_content %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<!--<form class="transparent">-->
+<!--<div class="form-inner">-->
 
 {% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
@@ -14,8 +18,8 @@
     <p>Please login to see this page.</p>
   {% endif %}
 {% endif %}
-
-<form method="post" action="{% url 'login' %}">
+<h3>Вход в систему</h3>
+<form method="post" action="{% url 'login' %}">  <!--добавила класс-->
 {% csrf_token %}
 <table>
 
@@ -34,7 +38,31 @@
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
+
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<p><a href="{% url 'signup' %}">Зарегистрироваться</a></p>
+
+<!--</div>-->
+<!--</form>-->
+
+
+
+
+
+
+<!--<form class="transparent">-->
+<!--<div class="form-inner">-->
+<!--<h3>Регистрация</h3>-->
+<!--<label for="username">Имя пользователя</label>-->
+<!--<input type="text" id="username">-->
+<!--<label for="password">Пароль</label>-->
+<!--<input id="password" type="password">-->
+<!--<input type="checkbox" id="custom-checkbox">-->
+<!--<label for="custom-checkbox">Запомнить меня</label>-->
+<!--<input type="submit" value="Отправить">-->
+<!--</div>-->
+<!--</form>-->
+
 
 {% endblock %}

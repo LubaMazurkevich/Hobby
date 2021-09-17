@@ -2,7 +2,8 @@
    box-sizing: border-box;
 }
 body {
-   background: #f69a73;
+   /*background: #f69a73;*/
+   background: #2c2c2c; 
 }
 .decor {
    position: relative;
@@ -59,10 +60,11 @@ body {
    border-radius: 50%;
    background: white;
 }
+
 .form-inner {
    padding: 50px;
-   width:70%;
-
+   width:90%;
+   background: #2c2c2c;
 
 }
 .form-inner input, .form-inner textarea {
@@ -70,7 +72,7 @@ body {
    width: 50%;
    padding: 0 20px;
    margin-bottom: 10px;
-   background: #E9EFF6;
+   background: #E9EFF6;  /*не менять тут цвет!*/
    line-height: 40px;
    border-width: 0;
    border-radius: 20px;
@@ -78,8 +80,8 @@ body {
 }
 .form-inner input[type="submit"] {
    margin-top: 30px;
-   background: #f69a73;
-   border-bottom: 4px solid #d87d56;
+   background: #4b0082;/*тут был 73 цвет   #800080*/ 
+   border-bottom: 4px solid #4b0082 ;   /*был #d87d56*/
    color: white;
    font-size: 14px;
 }
