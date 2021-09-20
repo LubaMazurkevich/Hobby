@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_content %}
+{% if user.is_authenticated %}
+    <h1> Мои Книги </h1>
+    <div class="row">
+        {% for b in my_books %}
+        <div class="col-md-4">
+        <div class="card mb-2">
+            <img class="card-img-top" src="{{b.image.url}}">
+                 <div class="card-body">
+                     <h5 class="card-title">{{b.title}}</h5>
+                        <p class="card-text">{{b.description}}</p>
+                        <a href="{% url 'book_detail' b.pk %}"
+                           class="btn bth-primary">
+                            Подробнее
+                        </a>
+                 </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+<p1>Для просмотра ваших книг нужно зарегистрироваться/войти в систему!</p1>
+{% endif %}
+
+{% endblock %}

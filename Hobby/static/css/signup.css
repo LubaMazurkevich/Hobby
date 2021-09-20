@@ -2,6 +2,7 @@
    box-sizing: border-box;
 }
 body {
+   /*background: #f69a73;*/
    background: #2c2c2c; 
 }
 .decor {
@@ -11,7 +12,6 @@ body {
    background: white;
    border-radius: 30px;
 }
-
 .form-left-decoration, .form-right-decoration {
    content: "";
    position: absolute;

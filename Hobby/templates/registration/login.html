@@ -1,68 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page_content %}
-
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
-<!--<form class="transparent">-->
-<!--<div class="form-inner">-->
-
 {% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
-
 {% if next %}
   {% if user.is_authenticated %}
     <p>Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
-  {% else %}
-    <p>Please login to see this page.</p>
   {% endif %}
 {% endif %}
-<h3>Вход в систему</h3>
-<form method="post" action="{% url 'login' %}">  <!--добавила класс-->
+<form class="transparent" method="post" action="{% url 'login' %}">
 {% csrf_token %}
+<div class="form-inner" style="color:#FFFFFF ">
+  <h3>Вход в систему</h3>
 <table>
-
 <tr>
   <td>{{ form.username.label_tag }}</td>
   <td>{{ form.username }}</td>
 </tr>
-
 <tr>
   <td>{{ form.password.label_tag }}</td>
   <td>{{ form.password }}</td>
 </tr>
 </table>
-
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 <p><a href="{% url 'signup' %}">Зарегистрироваться</a></p>
-
-<!--</div>-->
-<!--</form>-->
-
-
-
-
-
-
-<!--<form class="transparent">-->
-<!--<div class="form-inner">-->
-<!--<h3>Регистрация</h3>-->
-<!--<label for="username">Имя пользователя</label>-->
-<!--<input type="text" id="username">-->
-<!--<label for="password">Пароль</label>-->
-<!--<input id="password" type="password">-->
-<!--<input type="checkbox" id="custom-checkbox">-->
-<!--<label for="custom-checkbox">Запомнить меня</label>-->
-<!--<input type="submit" value="Отправить">-->
-<!--</div>-->
-<!--</form>-->
-
-
+</div>
+</form>
 {% endblock %}

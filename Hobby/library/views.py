@@ -39,3 +39,12 @@ def books_new(request):
         form = BookForm()   #это когда хотим получить пустую форму??
     return render(request, 'books.html', {'form': form})
 
+
+def my_books(request):
+    my_books = Book.objects.filter(author=request.user)
+    context = {
+        'my_books': my_books
+    }
+
+    return render(request, 'my_books.html', context)
+
