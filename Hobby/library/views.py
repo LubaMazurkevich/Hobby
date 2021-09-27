@@ -11,14 +11,13 @@ from django.contrib.auth.models import User
 
 def book_index(request):
     books=Book.objects.all()
-    #запрос  вернет коллекцию всех книг
     context = {
         'books': books
     }
     return render(request, 'book_index.html', context)
 
 def book_detail(request,pk):
-    book=Book.objects.get(pk=pk) # извлекает проект с первичным ключом pk(ключ определенного проекта)
+    book=Book.objects.get(pk=pk) 
     context={
         'book': book
     }
@@ -27,12 +26,12 @@ def book_detail(request,pk):
 
 def books_new(request):
     if request.method == "POST":
-        form = BookForm(request.POST, request.FILES) #POST-это публикация данных,все поля формы теперь в request.POST
+        form = BookForm(request.POST, request.FILES) 
         if form.is_valid():
             book = form.save(commit=False)
             book.save()
             book.author.add(User.objects.get_by_natural_key(request.user))
-            return redirect('book_detail', pk=book.pk) # переадресация на страницу после добавления новой записи
+            return redirect('book_detail', pk=book.pk) 
     else:
         form = BookForm()
     return render(request, 'books.html', {'form': form})
