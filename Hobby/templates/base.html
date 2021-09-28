@@ -6,14 +6,13 @@
     <title>Title</title>
 </head>
 
-
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#" style="color:#ffffff">Главная</a>
+    <a class="navbar-brand" href="{% url 'home' %}" style="color:#ffffff">Главная</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
      <li class="nav-item">
@@ -27,8 +26,14 @@
         <li class="nav-item" >
           <a class="nav-link" href="{% url 'books_new' %}" style="color:#ffffff">Добавить книгу</a>
         </li>
+          <li class="nav-item" >
+          <a class="nav-link" href="{% url 'film_new' %}" style="color:#ffffff">Добавить фильм</a>
+        </li>
           <li class="nav-item">
           <a class="nav-link" href="{% url 'my_books' %}" style="color:#ffffff">Мои книги</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'my_films' %}" style="color:#ffffff">Мои фильмы</a>
         </li>
       </ul>
       <form class="d-flex">

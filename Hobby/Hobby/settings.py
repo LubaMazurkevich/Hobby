@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'library',
     'accounts.apps.AccountsConfig',
+    'films',
 ]
 
 MIDDLEWARE = [
@@ -138,4 +139,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/library/static/',
+    '/films/static/',
 ]

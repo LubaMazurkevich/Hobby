@@ -9,6 +9,7 @@ from .models import Book
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
+
 def book_index(request):
     books=Book.objects.all()
     context = {
@@ -16,12 +17,13 @@ def book_index(request):
     }
     return render(request, 'book_index.html', context)
 
+
 def book_detail(request,pk):
     book=Book.objects.get(pk=pk) 
     context={
         'book': book
     }
-    return render(request,'book_detail.html',context)
+    return render(request,'book_detail.html', context)
 
 
 def books_new(request):
@@ -35,7 +37,6 @@ def books_new(request):
     else:
         form = BookForm()
     return render(request, 'books.html', {'form': form})
-
 
 
 def my_books(request):

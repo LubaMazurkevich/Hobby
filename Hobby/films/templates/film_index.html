@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+<link rel="stylesheet" href="{% static 'css/book_index.css' %}">
+<div class="row">
+    <h1 style="color:#FFFFFF">Фильмы </h1>
+    {% for f in films %}
+    <div class="col-md-4">
+    <div class="card mb-2">
+        <img class="card-img-top" src="{{f.image.url}}">
+             <div class="card-body">
+                 <h5 class="card-title">{{f.title}}</h5>
+                    <a href="{% url 'film_detail' f.pk %}"
+                       class="btn bth-primary">
+                        Подробнее
+                    </a>
+             </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-<h1>Книги </h1>
+<link rel="stylesheet" href="{% static 'css/book_index.css' %}">
 <div class="row">
+    <h1 style="color:#FFFFFF">Книги </h1>
     {% for b in books %}
     <div class="col-md-4">
     <div class="card mb-2">
 <!--        <img class="card-img-top" src="{% static b.image %}">-->
-        <img class="card-img-top" src="{{b.image.url}}">  <!--новая строка-->
+        <img class="card-img-top" src="{{b.image.url}}">  <!--style="height:100%"  не помогает-->
              <div class="card-body">
                  <h5 class="card-title">{{b.title}}</h5>
-                    <p class="card-text">{{b.description}}</p>
+<!--                    <p class="card-text">{{b.description}}</p>-->
                     <a href="{% url 'book_detail' b.pk %}"
                        class="btn bth-primary">
                         Подробнее
