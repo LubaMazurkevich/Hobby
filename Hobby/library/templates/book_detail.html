@@ -16,6 +16,7 @@
         <h3>Жанр:</h3>
         <p>{{ book.genre }}</p>
         <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'book_edit' pk=book.pk %}">Редактировать</a></button>
+        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'book_delete' pk=book.pk %}">Удалить</a></button>
     </div>
 </div>
 {% endblock %}

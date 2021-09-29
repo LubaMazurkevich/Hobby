@@ -1,6 +1,6 @@
 from time import timezone
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .forms import BookForm
 
@@ -63,3 +63,20 @@ def book_edit(request, pk):
     else:
         form = BookForm(instance=book)
     return render(request, 'book_edit.html', {'form': form})
+
+
+def book_delete(request,pk):
+    books = Book.objects.all()
+    context = {
+        'books': books
+    }
+    try:
+        book = Book.objects.get(pk=pk)
+        book.delete()
+        return render(request, 'book_index.html', context)
+    except Book.DoesNotExist:
+        return HttpResponseNotFound("<h2>Book not found</h2>")
+
+
+
+
