@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_content %}
+<link rel="stylesheet" href="{% static 'css/book_index.css' %}">
+{% if user.is_authenticated %}
+ <div class="row" >
+    <h1 style="color:#FFFFFF"> Мои сериалы </h1>
+        {% for s in my_serials %}
+        <div class="col-md-4">
+        <div class="card mb-2">
+            <img class="card-img-top" src="{{s.image.url}}">
+                 <div class="card-body">
+                     <h5 class="card-title">{{s.title}}</h5>
+                        <a href="{% url 'book_detail' s.pk %}"
+                           class="btn bth-primary">
+                            Подробнее
+                        </a>
+                 </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+<p1>Для просмотра ваших книг нужно зарегистрироваться/войти в систему!</p1>
+{% endif %}
+
+{% endblock %}

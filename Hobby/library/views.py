@@ -1,7 +1,7 @@
 from time import timezone
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import BookForm
 
 # Create your views here.
@@ -49,3 +49,17 @@ def my_books(request):
         return render(request, 'my_books.html', context)
     else:
         return HttpResponse('No authenticated,please login and then add books')
+
+
+def book_edit(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "POST": # If the form has been submitted
+        form = BookForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.save()
+            book.author.add(User.objects.get_by_natural_key(request.user))
+            return redirect('book_detail', pk=book.pk)
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'book_edit.html', {'form': form})

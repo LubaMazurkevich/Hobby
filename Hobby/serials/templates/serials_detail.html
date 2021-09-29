@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+<link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
+
+<div class="row">
+    <h1> {{ tv_serial.title }}</h1>
+    <div class="col-md-8" >
+        <img src="{{tv_serial.image.url}}" alt="" width="30%">
+    </div>
+    <div class="col-md-4">
+        <h2>О сериале: </h2>
+        <p>{{ tv_serial.description }}</p>
+        <br>
+        <h3>Жанр:</h3>
+        <p>{{ tv_serial.genre }}</p>
+    </div>
+</div>
+{% endblock %}

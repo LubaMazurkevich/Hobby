@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'library',
     'accounts.apps.AccountsConfig',
     'films',
+    'serials',
 ]
 
 MIDDLEWARE = [
@@ -140,4 +141,5 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/library/static/',
     '/films/static/',
+    '/serials/static/',
 ]
