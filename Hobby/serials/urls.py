@@ -7,4 +7,6 @@ urlpatterns = [
     path('<int:pk>/', views.serials_detail, name='serials_detail'),
     path('film_new/', views.serials_new, name='serials_new'),
     path('my_films/', views.my_serials, name='my_serials'),
+    path('serials/<int:pk>/edit/', views.serials_edit, name='serials_edit'),
+    path('delete/<int:pk>/', views.serials_delete, name='serials_delete')
 ]

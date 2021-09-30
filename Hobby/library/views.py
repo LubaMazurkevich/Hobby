@@ -52,30 +52,36 @@ def my_books(request):
 
 
 def book_edit(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-    if request.method == "POST": # If the form has been submitted
-        form = BookForm(request.POST, request.FILES, instance=book)
-        if form.is_valid():
-            book = form.save(commit=False)
-            book.save()
-            book.author.add(User.objects.get_by_natural_key(request.user))
-            return redirect('book_detail', pk=book.pk)
+    if request.user.is_superuser:
+        book = get_object_or_404(Book, pk=pk)
+        if request.method == "POST": # If the form has been submitted
+                form = BookForm(request.POST, request.FILES, instance=book)
+                if form.is_valid():
+                    book = form.save(commit=False)
+                    book.save()
+                    book.author.add(User.objects.get_by_natural_key(request.user))
+                    return redirect('book_detail', pk=book.pk)
+        else:
+            form = BookForm(instance=book)
+        return render(request, 'book_edit.html', {'form': form})
     else:
-        form = BookForm(instance=book)
-    return render(request, 'book_edit.html', {'form': form})
+        return HttpResponse('Only admin can edit books!')
 
 
 def book_delete(request,pk):
-    books = Book.objects.all()
-    context = {
-        'books': books
-    }
-    try:
-        book = Book.objects.get(pk=pk)
-        book.delete()
-        return render(request, 'book_index.html', context)
-    except Book.DoesNotExist:
-        return HttpResponseNotFound("<h2>Book not found</h2>")
+    if request.user.is_superuser:
+        books = Book.objects.all()
+        context = {
+            'books': books
+        }
+        try:
+            book = Book.objects.get(pk=pk)
+            book.delete()
+            return render(request, 'book_index.html', context)
+        except Book.DoesNotExist:
+            return HttpResponseNotFound("<h2>Book not found</h2>")
+    else:
+        return HttpResponse('Only admin can delete books!')
 
 
 

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+<link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
+
+<div class="row">
+    <h1> {{ film.title }}</h1>
+    <div class="col-md-8" >
+        <img src="{{film.image.url}}" alt="" width="30%">
+    </div>
+    <div class="col-md-4">
+        <h2>О фильме: </h2>
+        <p>{{ film.description }}</p>
+        <br>
+        <h3>Жанр:</h3>
+        <p>{{ film.genre }}</p>
+    </div>
+</div>
+{% endblock %}

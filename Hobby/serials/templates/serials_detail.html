@@ -14,6 +14,8 @@
         <br>
         <h3>Жанр:</h3>
         <p>{{ tv_serial.genre }}</p>
+        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'serials_edit' pk=tv_serial.pk %}">Редактировать</a></button>
+        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'serials_delete' pk=tv_serial.pk %}">Удалить</a></button>
     </div>
 </div>
 {% endblock %}
