@@ -51,6 +51,27 @@ def my_books(request):
         return HttpResponse('No authenticated,please login and then add books')
 
 
+def books_add(request,pk):
+    if request.user.is_authenticated:
+        book = Book.objects.get(pk=pk)
+        context = {
+            'book': book
+        }
+        my_books = Book.objects.filter(author=request.user)
+        context_1 = {
+            'my_books': my_books
+        }
+        if book.author!=request.user:
+            book.author.add(User.objects.get_by_natural_key(request.user))
+            return render(request, 'my_books.html', context_1)
+        else:
+            return HttpResponse('Книга уже внесена в ваши книги!')
+    else:
+        return HttpResponse('Войдите в систему чтобы добавить книгу!')
+
+
+
+
 def book_edit(request, pk):
     if request.user.is_superuser:
         book = get_object_or_404(Book, pk=pk)
