@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+
+<link rel="stylesheet" href="{% static 'css/books.css' %}">
+<div class="form-inner" style="color:#FFFFFF ">
+    <h1>Redact film</h1>
+    <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <h1>Redact film</h1>
+        <input type="submit" value="Save">
+    </form>
+</div>
+
+{% endblock %}
