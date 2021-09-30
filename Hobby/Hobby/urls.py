@@ -29,7 +29,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('films/', include('films.urls'), name='films'),
     path('serials/', include('serials.urls'), name='serials'),
-    path('', views.book_film, name='home')
+    path('', views.book_film, name='home'),
+    path('search/', include('search.urls'), name='search'),
 ]
 
 

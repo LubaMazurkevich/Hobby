@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'films',
     'serials',
+    'search.apps.SearchConfig',
 ]
 
 MIDDLEWARE = [

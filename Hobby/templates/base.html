@@ -42,10 +42,12 @@
           <a class="nav-link" href="{% url 'my_serials' %}" style="color:#ffffff">Мои сериалы</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="color:#ffffff">
+        <!--поиск-->
+      <form class="d-flex" action="{% url 'search_results' %}" method="get"> <!--action!-->
+        <input name="q" class="form-control me-2" type="text" placeholder="search by title of book/movie/series" aria-label="Search" style="color:#000000">
         <button class="btn btn-outline-success" type="submit" style="color:#ffffff">Search</button>
       </form>
+
     </div>
   </div>
 </nav>
