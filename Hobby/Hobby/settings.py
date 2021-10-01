@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'films',
     'serials',
     'search.apps.SearchConfig',
+    'rest_framework',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [

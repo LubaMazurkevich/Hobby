@@ -31,6 +31,7 @@ urlpatterns = [
     path('serials/', include('serials.urls'), name='serials'),
     path('', views.book_film, name='home'),
     path('search/', include('search.urls'), name='search'),
+    path('', include('api.urls')),
 ]
 
 
