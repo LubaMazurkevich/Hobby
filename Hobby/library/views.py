@@ -2,7 +2,8 @@ from time import timezone
 
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from .forms import BookForm
+from .forms import BookForm ,BookSeriesForm
+
 
 # Create your views here.
 from .models import Book
@@ -70,8 +71,6 @@ def books_add(request,pk):
         return HttpResponse('Войдите в систему чтобы добавить книгу!')
 
 
-
-
 def book_edit(request, pk):
     if request.user.is_superuser:
         book = get_object_or_404(Book, pk=pk)
@@ -105,5 +104,36 @@ def book_delete(request,pk):
         return HttpResponse('Only admin can delete books!')
 
 
+def add_book_to_series(request, pk):
+    book=Book.objects.get(pk=pk)
+    series=BookSeries.objects.all()
+    context = {
+        'book': book,
+        'series': series,
+    }
+    return render(request, 'add_book_to_series.html', context)
+
+
+def add_book_to_serie(request, sk, bk):
+    book = Book.objects.get(pk=bk)
+    seria = BookSeries.objects.get(pk=sk)
+    book.series = seria
+    book.save()
+    context = {
+        'book': book,
+    }
+    return render(request, 'book_detail.html', context)
+
+
+def create_serie_for_book(request):
+    if request.method == "POST":
+        form = BookSeriesForm(request.POST)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.save()
+            return redirect('book_detail', pk=book.pk)
+    else:
+        form = BookSeriesForm()
+    return render(request, 'series.html', {'form': form})
 
 

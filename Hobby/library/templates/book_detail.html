@@ -15,9 +15,17 @@
         <br>
         <h3>Жанр:</h3>
         <p>{{ book.genre }}</p>
+        {% if book.series == None %}
+        {% else %}
+        <h3>Серия:</h3>
+        <p>{{ book.series.title }}</p>
+        {% endif %}
         <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'book_edit' pk=book.pk %}">Редактировать</a></button>
         <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'book_delete' pk=book.pk %}">Удалить</a></button>
         <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'books_add' pk=book.pk %}">Добавить в свои книги</a></button>
+        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'add_book_to_series' pk=book.pk %}">Добавить книгу в серию</a></button>
     </div>
 </div>
 {% endblock %}
+
+

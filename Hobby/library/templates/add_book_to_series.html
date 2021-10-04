@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+<a href="{% url 'model_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+{% load static %}
+{% block page_content %}
+<link rel="stylesheet" href="{% static 'css/books.css' %}">
+<div class="form-inner" style="color:#FFFFFF ">
+    <h1 >Добавить книгу в серию</h1>
+    {% for s in series %}
+    <h5 class="card-title">{{s.title}}</h5>
+     <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'add_book_to_serie' sk=s.pk  bk=book.pk %}">Добавить книгу в серию</a></button>
+    {% endfor %}
+</div>
+{% endblock %}
+
