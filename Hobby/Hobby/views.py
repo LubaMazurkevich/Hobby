@@ -11,4 +11,4 @@ def book_film(request):
     serials = Tvserial.objects.all()
     context = {'books': books, 'films': films, 'serials': serials}
 
-    return render(request, 'home.html',context)
+    return render(request, 'home.html', context)

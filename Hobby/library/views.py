@@ -3,9 +3,7 @@ from time import timezone
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .forms import BookForm ,BookSeriesForm
-
-
-# Create your views here.
+from .models import BookSeries
 from .models import Book
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
@@ -21,9 +19,17 @@ def book_index(request):
 
 def book_detail(request,pk):
     book=Book.objects.get(pk=pk) 
-    context={
-        'book': book
-    }
+    try:
+        book.author.get(username=request.user)
+        context={
+            'book': book,
+            'has_this_user': True
+        }
+    except:
+        context={
+            'book': book,
+            'has_this_user': False
+        }
     return render(request,'book_detail.html', context)
 
 
@@ -52,7 +58,7 @@ def my_books(request):
         return HttpResponse('No authenticated,please login and then add books')
 
 
-def books_add(request,pk):
+def books_add_delete_for_user(request,pk):
     if request.user.is_authenticated:
         book = Book.objects.get(pk=pk)
         context = {
@@ -62,11 +68,12 @@ def books_add(request,pk):
         context_1 = {
             'my_books': my_books
         }
-        if book.author!=request.user:
-            book.author.add(User.objects.get_by_natural_key(request.user))
-            return render(request, 'my_books.html', context_1)
-        else:
-            return HttpResponse('Книга уже внесена в ваши книги!')
+        for user in book.author.all():
+            if user == request.user:
+                book.author.remove(User.objects.get_by_natural_key(request.user))
+                return render(request, 'my_books.html', context_1)
+        book.author.add(User.objects.get_by_natural_key(request.user))
+        return render(request, 'my_books.html', context_1)
     else:
         return HttpResponse('Войдите в систему чтобы добавить книгу!')
 

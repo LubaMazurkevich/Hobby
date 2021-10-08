@@ -5,8 +5,8 @@
 
 <div class="row">
     <h1> {{ tv_serial.title }}</h1>
-    <div class="col-md-8" >
-        <img src="{{tv_serial.image.url}}" alt="" width="30%">
+    <div class="col-md-3" >
+        <img src="{{tv_serial.image.url}}" alt="" width="100%">
     </div>
     <div class="col-md-4">
         <h2>О сериале: </h2>
@@ -14,8 +14,9 @@
         <br>
         <h3>Жанр:</h3>
         <p>{{ tv_serial.genre }}</p>
-        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'serials_edit' pk=tv_serial.pk %}">Редактировать</a></button>
-        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'serials_delete' pk=tv_serial.pk %}">Удалить</a></button>
+        <a href="{% url 'serials_edit' pk=tv_serial.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Редактировать</button></a>
+        <a href="{% url 'serials_delete' pk=tv_serial.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Удалить</button></a>
+        <a href="{% url 'serial_add' pk=tv_serial.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Добавить в мои сериалы</button></a>
     </div>
 </div>
 {% endblock %}

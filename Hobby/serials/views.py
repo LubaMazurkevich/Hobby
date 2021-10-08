@@ -82,3 +82,22 @@ def serials_delete(request,pk):
             return HttpResponseNotFound("<h2>TVserial not found</h2>")
     else:
         return HttpResponse('Only admin can delete books!')
+
+
+def serial_add(request,pk):
+    if request.user.is_authenticated:
+        serial = Tvserial.objects.get(pk=pk)
+        context = {
+            'serial': serial
+        }
+        my_serials = Tvserial.objects.filter(author=request.user)
+        context_1 = {
+            'my_serials': my_serials
+        }
+        for user in serial.author.all():
+            if user == request.user:
+                return HttpResponse('Сериал уже внесен в ваши сериалы!')
+        serial.author.add(User.objects.get_by_natural_key(request.user))
+        return render(request, 'my_serials.html', context_1)
+    else:
+        return HttpResponse('Войдите в систему чтобы добавить сериал!')

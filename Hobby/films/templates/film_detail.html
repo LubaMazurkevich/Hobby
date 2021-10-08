@@ -5,8 +5,8 @@
 
 <div class="row">
     <h1> {{ film.title }}</h1>
-    <div class="col-md-8" >
-        <img src="{{film.image.url}}" alt="" width="30%">
+    <div class="col-md-3" >
+        <img src="{{film.image.url}}" alt="" width="100%">
     </div>
     <div class="col-md-4">
         <h2>О фильме: </h2>
@@ -14,8 +14,8 @@
         <br>
         <h3>Жанр:</h3>
         <p>{{ film.genre }}</p>
-                <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'film_edit' pk=film.pk %}">Редактировать</a></button>
-        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'film_delete' pk=film.pk %}">Удалить</a></button>
+        <a href="{% url 'film_edit' pk=film.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Редактировать</button></a>
+        <a href="{% url 'film_delete' pk=film.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Удалить</button></a>
     </div>
 </div>
 {% endblock %}

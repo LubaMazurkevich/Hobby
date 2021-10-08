@@ -5,9 +5,8 @@
 
 <div class="row">
     <h1> {{ book.title }}</h1>
-    <div class="col-md-8" >
-<!--        <img src="{% static book.image %}" alt="" width="100%">--> <!--static-->
-        <img src="{{book.image.url}}" alt="" width="30%">
+    <div class="col-md-3" >
+        <img src="{{book.image.url}}" alt="" width="100%">
     </div>
     <div class="col-md-4">
         <h2>О книге: </h2>
@@ -20,10 +19,15 @@
         <h3>Серия:</h3>
         <p>{{ book.series.title }}</p>
         {% endif %}
-        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'book_edit' pk=book.pk %}">Редактировать</a></button>
-        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'book_delete' pk=book.pk %}">Удалить</a></button>
-        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'books_add' pk=book.pk %}">Добавить в свои книги</a></button>
-        <button type="button" class="btn btn-success" style="length: 40px;color:white" ><a href="{% url 'add_book_to_series' pk=book.pk %}">Добавить книгу в серию</a></button>
+        <a href="{% url 'book_edit' pk=book.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Редактировать</button></a>
+        <a href="{% url 'book_delete' pk=book.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Удалить</button></a>
+        <a href="{% url 'add_book_to_series' pk=book.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Добавить книгу в серию</button></a>
+        {% if has_this_user %}
+        <a href="{% url 'books_add' pk=book.pk %}"><button type="button" class="btn btn-success" style="length: 40px;margin-top:5px;color:white" >Удалить из своих книг</button></a>
+        {% else %}
+        <a href="{% url 'books_add' pk=book.pk %}"><button type="button" class="btn btn-success" style="length: 40px;margin-top:5px;color:white" >Добавить в свои книги</button></a>
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}
