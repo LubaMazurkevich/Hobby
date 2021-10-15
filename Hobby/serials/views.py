@@ -20,9 +20,17 @@ def serials_index(request):
 
 def serials_detail(request,pk):
     tv_serial=Tvserial.objects.get(pk=pk)
-    context={
-        'tv_serial': tv_serial
-    }
+    try:
+        tv_serial.author.get(username=request.user)
+        context={
+            'tv_serial': tv_serial,
+            'has_this_user': True
+        }
+    except:
+        context={
+            'tv_serial':tv_serial,
+            'has this user': False
+        }
     return render(request, 'serials_detail.html', context)
 
 
@@ -84,7 +92,7 @@ def serials_delete(request,pk):
         return HttpResponse('Only admin can delete books!')
 
 
-def serial_add(request,pk):
+def serial_add_delete_for_user(request,pk):
     if request.user.is_authenticated:
         serial = Tvserial.objects.get(pk=pk)
         context = {
@@ -96,7 +104,8 @@ def serial_add(request,pk):
         }
         for user in serial.author.all():
             if user == request.user:
-                return HttpResponse('Сериал уже внесен в ваши сериалы!')
+                serial.author.remove(User.objects.get_by_natural_key(request.user))
+                return render (request,'my_serials.html',context_1)
         serial.author.add(User.objects.get_by_natural_key(request.user))
         return render(request, 'my_serials.html', context_1)
     else:

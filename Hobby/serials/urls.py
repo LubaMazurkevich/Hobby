@@ -9,5 +9,5 @@ urlpatterns = [
     path('my_serials/', views.my_serials, name='my_serials'),
     path('serials/<int:pk>/edit/', views.serials_edit, name='serials_edit'),
     path('delete/<int:pk>/', views.serials_delete, name='serials_delete'),
-    path('add/<int:pk>/', views.serial_add, name='serial_add'),
+    path('add/<int:pk>/', views.serial_add_delete_for_user, name='serial_add'),
 ]

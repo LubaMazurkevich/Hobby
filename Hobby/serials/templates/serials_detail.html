@@ -16,7 +16,12 @@
         <p>{{ tv_serial.genre }}</p>
         <a href="{% url 'serials_edit' pk=tv_serial.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Редактировать</button></a>
         <a href="{% url 'serials_delete' pk=tv_serial.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Удалить</button></a>
+        {% if has_this_user %}
+        <a href="{% url 'serial_add' pk=tv_serial.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Удалить из моих сериалов</button></a>
+        {% else %}
         <a href="{% url 'serial_add' pk=tv_serial.pk %}"><button type="button" class="btn btn-success" style="length: 40px;color:white" >Добавить в мои сериалы</button></a>
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}
